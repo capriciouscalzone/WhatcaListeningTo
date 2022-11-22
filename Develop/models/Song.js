@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Project extends Model {}
+class Song extends Model {}
 
-Project.init(
+Song.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ Project.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    genre: {
       type: DataTypes.STRING,
     },
     date_created: {
@@ -23,8 +23,8 @@ Project.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    needed_funding: {
-      type: DataTypes.FLOAT,
+    artist: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     user_id: {
@@ -40,8 +40,8 @@ Project.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'song',
   }
 );
 
-module.exports = Project;
+module.exports = Song;
