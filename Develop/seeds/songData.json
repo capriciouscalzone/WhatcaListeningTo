@@ -1,25 +1,22 @@
 [
-    {
-      "name": "Doses & Mimosas",
-      "genre": "Electro-Indie",
-      "artist":"Cherub"
-      
-    },
-    {
-      "name": "Wild Grey Ocean",
-      "genre": "Alt-Rock",
-      "artist":"Sam Fender"
-    
-    },
-    {
-      "name": "Watermelon Sugar",
-      "genre": "Pop",
-      "artist":"Harry Styles"
-    },
-    {
-        "name": "Homecoming",
-        "genre": "Rap",
-        "artist":"Kanye West"
-      }
-  ]
-  
+  {
+    "title": "Doses & Mimosas",
+    "genre": "Electro-Indie",
+    "artist": "Cherub"
+  },
+  {
+    "title": "Wild Grey Ocean",
+    "genre": "Alt-Rock",
+    "artist": "Sam Fender"
+  },
+  {
+    "title": "Watermelon Sugar",
+    "genre": "Pop",
+    "artist": "Harry Styles"
+  },
+  {
+    "title": "Homecoming",
+    "genre": "Rap",
+    "artist": "Kanye West"
+  }
+]
