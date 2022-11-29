@@ -1,27 +1,19 @@
-
-<h1>hello world</h1>
-
-{{#each songs as |song| }}
-<div class="row mb-4 song">
-  <div class="col-md-5">
-    <h2>
-   
-      <a href="/song/{{song.id}}">{{song.title}}</a>
-    </h2>
-    <p>
-      
-      
-      <span class="artist">{{song.artist}}</span>
-
-      <span class="genre">{{song.genre}}</span>
-      
-    </p>
-    <p>Posted by {{song.user.name}} on {{format_date song.date_created}}</p>
+{{#each allSongs as |song|}}
+  <div class='row mb-4 song'>
+    <div class='col-md-5'>
+      <h2>
+        <a>{{song.title}}</a>
+      </h2>
+      <p>
+        <span class='artist'>{{song.artist}}</span>
+        <span class='genre'>{{song.genre}}</span>
+      </p>
+      <p>Posted by {{song.user.name}} </p>
+    </div>
+    <div class='col-md-7'>
+      <p>
+        {{song.description}}
+      </p>
+    </div>
   </div>
-  <div class="col-md-7">
-    <p>
-      {{song.description}}
-    </p>
-  </div>
-</div>
 {{/each}}

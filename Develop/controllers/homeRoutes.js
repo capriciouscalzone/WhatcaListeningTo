@@ -4,11 +4,13 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    const songData = Song.findAll({});
-    const allSongs = songData.Map((song) => song.get({ plain: true }));
+    const songData = await Song.findAll();
+    console.log(songData);
+    const allSongs = songData.map((song) => song.get({ plain: true }));
 
-    res.render("hompage", {allSongs, logged_in: req.session.logged_in });
+    res.render("homepage", {allSongs, logged_in: req.session.logged_in });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
