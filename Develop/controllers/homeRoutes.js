@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Comment, Song, User } = require("../models");
+const { Song, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -7,8 +7,8 @@ router.get("/", async (req, res) => {
     const songData = Song.findAll({});
     const allSongs = songData.Map((song) => song.get({ plain: true }));
 
-    res.render("hompage", allSongs);
-  } catch (error) {
+    res.render("hompage", {allSongs, logged_in: req.session.logged_in });
+  } catch (err) {
     res.status(500).json(err);
   }
 });
