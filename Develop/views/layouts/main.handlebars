@@ -9,15 +9,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/0e4e3bfe2f.js" crossorigin="anonymous"></script>
 
-  <link rel="styles" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
 </head>
 
-<body style="">
+<body>
   <div>
     <header class="p-2 m-2" style="background-color: #1db954; border-radius: 3px;">
 
       <h1 class="ms-3">
-        <img src="../../public/images/Daco_4389748.png">
+        <img src="./images/Daco_4389748.png" width="70">
         <a href="/" class="text-light">WhachaListening2</a>
       </h1>
 
@@ -28,7 +28,7 @@
           <div class="container-fluid">
         {{#if logged_in}}
         <button type="button" class="btn btn-outline-success">
-            <a href="/profile" class="navbar-brand text-white align-center">Profile</a> 
+            <a href="/profile" class="navbar-brand text-white">Profile</a> 
             </button>
             <button  type="button" class="btn btn-outline-success text-white" id="logout">Logout</button>
         {{else}}
