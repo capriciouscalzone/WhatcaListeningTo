@@ -23,15 +23,15 @@ router.get("/", async (req, res) => {
 
 router.get("/profile", withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id, {
+    const profileData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Song }],
     });
 
-    const user = userData.get({ plain: true });
+    const profile = profileData.get({ plain: true });
 
     res.render("profile", {
-      ...user,
+      ...profile,
       logged_in: true,
     });
   } catch (err) {
@@ -39,13 +39,41 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
+// r
 router.get("/login", (req, res) => {
+  try{
   if (req.session.logged_in) {
     res.redirect("/profile");
     return;
   }
 
-  res.render("login");
+  res.render("login");}
+  catch(err){
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
+
+router.get("/:user", async (req, res) => {
+    try {
+      const userData = await User.findOne(
+       { where:{name:req.params.user},
+      attributes: { exclude: ["password"] },
+        include: [{ model: Song }], });
+        
+        const user = userData.get({
+          plain: true
+        });
+  
+        res.render ("user", {
+          ...user,
+          logged_in: req.session.logged_in,
+        });
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
 
 module.exports = router;
