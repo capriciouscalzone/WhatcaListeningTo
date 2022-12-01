@@ -27,8 +27,10 @@
         <nav class="navbar ms-2 me-2" style="background-color: #191414; border-radius: 3px;">
           <div class="container-fluid">
         {{#if logged_in}}
-            <a href="/profile" class="navbar-brand">Profile</a> |
-            <button class="no-button" id="logout">Logout</button>
+        <button type="button" class="btn btn-outline-success">
+            <a href="/profile" class="navbar-brand text-white align-center">Profile</a> 
+            </button>
+            <button  type="button" class="btn btn-outline-success text-white" id="logout">Logout</button>
         {{else}}
         <button type="button" class="btn btn-outline-success">
         <a href="/login " class="text-white">Sign In:<i class="fa-solid fa-user"></i></a>
