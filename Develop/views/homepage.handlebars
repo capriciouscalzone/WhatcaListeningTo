@@ -11,7 +11,9 @@
       <li class="list-group-item">
         <span class='genre'>Genre: {{song.genre}}</span>
       </li>
-      <li class="list-group-item">Posted by: {{song.user.name}} </li>
+      <li class="list-group-item">
+        <a href="/{{song.user.name}}"> Posted by: {{song.user.name}} </a>
+        </li>
     </div>
     </ul>
     <div class='col-md-7'>
@@ -21,3 +23,5 @@
     </div>
   </div>
 {{/each}}
+
+
