@@ -39,6 +39,32 @@ const delButtonHandler = async (event) => {
   }
 };
 
+const newCommentHandler = async (event) => {
+  event.preventDefault();
+
+  const commentBody = document.querySelector('#comment-body').value.trim();
+
+  if(commentBody){
+     const response = await fetch('/api/comment', {
+          method: 'POST',
+          body: JSON.stringify({ commentBody }),
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+      
+      if (response.ok) {
+          location.reload();
+      } else {
+          alert('Failed to create comment');
+      }
+  }
+}
+
+document
+  .querySelector(".comment-form")
+  .addEventListener("submit", newCommentHandler);
+
 document
   .querySelector(".new-song-form")
   .addEventListener("submit", newFormHandler);

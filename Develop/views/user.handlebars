@@ -11,25 +11,40 @@
       <h3>{{user.name}} Songs:</h3>
     </div>
       {{#each songs as |song|}}
-        <div class=' card row mb-4 p-3 song' style="background-color: #191414e9; border: radius 2px;">
+        <div class='card row mb-4 p-3 song' style="background-color: #191414e9; border: radius 2px;">
             <div class='col-md-auto p-2' >
               <h3 class="p-1" style="background-color: #1db954; border-radius: 3px;">
                 <p class="text-light ms-2 mt-3">{{song.title}}</p>
               </h3>
               <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <span class='artist'>Artist: {{song.artist}}</span>        
-              </li>
-              <li class="list-group-item">
-                <span class='genre'>Genre: {{song.genre}}</span>
-              </li>
+                <li class="list-group-item">
+                  <span class='artist'>Artist: {{song.artist}}</span>        
+                </li>
+                <li class="list-group-item">
+                  <span class='genre'>Genre: {{song.genre}}</span>
+                </li>
+              </ul>
             </div>
-            </ul>
-            <div class='col-md-7'>
-              <p>
-                {{song.description}}
-              </p>
-            </div>
+            
+              <div>
+                <h6 class="text-light">Comments:</h6>
+                <ul class="text-light">
+                {{#each ../comments as |comment|}}
+                  {{#compare song.id comment.song_id comment.body}}
+                  {{/compare}}
+                {{/each}}
+                </ul>
+            {{#if ../logged_in}}
+              <form class="comment-form" id="{{song.id}}">
+                <h6 class="text-white">Add Comment</h6>
+                  <div class="col-md-12">            
+                    <input type="text" class="form-control" id="comment-body">
+                    <button class="btn btn-sm btn-outline-success mt-2" type="submit">+</button>
+                  </div>
+              </form>
+            {{/if}}
+              </div>
+            
         </div>
     {{/each}}
   </div>
