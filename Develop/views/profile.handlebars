@@ -36,7 +36,28 @@
         {{!-- <textarea class="form-input col-6" type="text" id="song-genre" name="song-genre"></textarea> --}}
       </div>
       <div class="form-group mt-4 align-right">
-        <button class="btn btn-outline-success" type="submit">Post</button>        
+        <button class="btn btn-outline-success" type="submit" id="button">Post</button>
+      <script>
+        function editReview() {
+          const textArea1 = document.getElementById('song-title');
+          const textArea2 = document.getElementById('song-artist');
+          const textArea3 = document.getElementById('song-genre');
+          let badwords = /fuck|shit|piss|ass|tits|cock|pussy|damn|hell|Fuck|Shit|Piss|Ass|Tits|Cock|Pussy|Damn|Hell|cunt|Cunt/gi;
+          let userSong = textArea1.value;
+          let userArtist = textArea2.value;
+          let userGenre = textArea3.value;
+          let userSong2 = userSong.replace(badwords, '******');
+          let userArtist2 = userArtist.replace(badwords, '*******');
+          let userGenre2 = userGenre.replace(badwords, '******');
+          document.getElementById('song-title').value = userSong2;
+          document.getElementById('song-artist').value = userArtist2;
+          document.getElementById('song-genre').value = userGenre2;
+        }
+        document.getElementById('button').addEventListener('click', editReview)
+      </script>
+
+
+
       </div>
     </form>
   </div>
