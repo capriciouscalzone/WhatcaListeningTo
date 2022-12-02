@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Song, User } = require("../models");
+const { Song, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -39,7 +39,6 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
-// r
 router.get("/login", (req, res) => {
   try{
   if (req.session.logged_in) {
@@ -56,21 +55,31 @@ router.get("/login", (req, res) => {
 
 router.get("/:user", async (req, res) => {
     try {
-      const userData = await User.findOne(
-       { where:{name:req.params.user},
-      attributes: { exclude: ["password"] },
-        include: [{ model: Song }], });
-        
-        const user = userData.get({
+
+      const [userData, commentData] = await Promise.all([
+        User.findOne(
+          { 
+            where:{name:req.params.user},
+            attributes: { exclude: ["password"] },
+            include: [{ model: Song }], 
+          }),
+        Comment.findAll(),
+      ]);
+
+      const user = userData.get({
           plain: true
-        });
+      });
   
-        res.render ("user", {
-          ...user,
-          logged_in: req.session.logged_in,
-        });
+      const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+      res.render ("user", {
+        ...user,
+        comments,
+        logged_in: req.session.logged_in,
+      });
   
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   });
